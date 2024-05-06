@@ -5,6 +5,7 @@ import {
   login,
   logout,
   register,
+  verifyEmail,
 } from "../controllers/userController.js";
 import { isAuthenticated, isAuthorized } from "../middlewares/auth.js";
 
@@ -15,5 +16,6 @@ router.post("/login", login);
 router.get("/logout", isAuthenticated, logout);
 router.get("/myprofile", isAuthenticated, getMyProfile);
 router.get("/authors", getAllAuthors);
+router.get("/user/verify-email",verifyEmail);
 
 export default router;

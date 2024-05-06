@@ -3,6 +3,10 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const activationTokenSchema=new mongoose.Schema({
+  verificationLink: { type: String, required: true }
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -50,6 +54,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  token:{ type: String,required:true},
+  isActive:{type:Boolean,default:false},
+  activationToken:{type:activationTokenSchema}
 });
 
 userSchema.pre("save", async function () {
